@@ -13,7 +13,7 @@
 #include <math.h>
 
 // Maximum Vertices the Polygon can have
-#define MAX 10
+#define MAX 50
 
 // Maximum value of abscissa and ordinates
 #define MAX_VAL 100
@@ -281,11 +281,13 @@ int main()
   double minCostGreedy, minCostDP;
   FILE *fout = fopen("ObservationDP1.csv", "w");
   FILE *fout1 = fopen("ObservationGreedy.csv", "w");
+  FILE *fnew = fopen("ObeservationNew.csv", "w");
   FILE *fp1 = fopen("ResultsDP1.txt", "w");
   FILE *fp2 = fopen("ResultsGreedy.txt", "w");
   FILE *fdev = fopen("Deviations.txt", "w");
   fprintf(fout, "Vertices,Avg.Time Taken\n");
   fprintf(fout1, "Vertices,Avg.Time Taken\n");
+  fprintf(fnew, "Vertices, Avg.Time Taken DP, Avg.Time Taken Greedy\n");
   for (int i = 3; i <= MAX; i++)
   {
     float time_sum = 0, time_sum1 = 0;
@@ -330,6 +332,7 @@ int main()
     }
     fprintf(fout1, "%d,%0.4f\n", i, time_sum1 / TOTAL);
     fprintf(fout, "%d,%0.4f\n", i, time_sum / TOTAL);
+    fprintf(fnew, "%d,%0.4f,%0.4f\n", i, time_sum / TOTAL, time_sum1 / TOTAL);
   }
   printf("\nFiles have been generated successfully\n");
   fclose(fp1);

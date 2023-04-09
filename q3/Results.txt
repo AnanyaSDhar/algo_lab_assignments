@@ -1,0 +1,38 @@
+Bitcoin Dataset:
+num_vertex = 3783;
+num_edges = 24186;
+
+Bitcoin List Approach:
+Average Time Taken: 6575ms
+Bitcoin Tree Approach:
+Average Time Taken: 6351ms
+
+
+Facebook Dataset:
+num_vertex = 4039;
+num_edges = 88234;
+
+Facebook List Approach:
+Average Time Taken: 22823ms
+Facebook Tree Approach:
+Average Time Taken: 21632ms
+
+
+Linux Dataset:
+num_vertex = 30837;
+num_edges = 213954;
+
+Linux List Approach:
+Average Time Taken: 89370.4ms
+Linux Tree Approach:
+Average Time Taken: 88637ms
+
+
+Twitter Dataset:
+num_vertex =81306
+num_edges = 1768149;
+
+Twitter List Approach:
+Average Time Taken: 617960ms
+Twitter Tree Approach:
+Average Time Taken: 564233ms

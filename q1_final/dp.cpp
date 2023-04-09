@@ -8,7 +8,7 @@
 using namespace std;
 
 // Maximum Vertices the Polygon can have
-#define MAX 15
+#define MAX 16
 
 // Maximum value of abscissa and ordinates
 #define MAX_VAL 200
@@ -182,10 +182,11 @@ int main()
   FILE *fout = fopen("ObservationDPcpp.csv", "w");
   FILE *fp = fopen("Results_dp.txt", "w");
   
-  fprintf(fout, "Vertices,Avg.Time Taken\n");
+  fprintf(fout, "Vertices,Avg.Time Taken,Avg.Time Taken DP\n");
   for (int i = 3; i <= MAX; i++)
   {
     float time_sum = 0;
+    float time_sumDP = 0;
     printf("\nNumber of Vertices:%d\n", i);
     for (int j = 0; j < TOTAL; j++)
     {
@@ -205,16 +206,24 @@ int main()
 
       float start = clock();
       minCostDP = minTriangulationCostDP(points, i);
+      float end = clock();
+      float time_reqDP = (end - start) * 1000 / CLOCKS_PER_SEC;
+
+      start = clock();
       minCost = minTriangulationCost(points, 0, i - 1);
+      end = clock();
+
       fprintf(fp, "Cost of Triangulation from DP is %f\n", minCostDP);
       fprintf(fp, "Cost of Triangulation is %f\n", minCost);
-      float end = clock();
+      
       float time_req = (end - start) * 1000 / CLOCKS_PER_SEC;
-      printf("Time taken for round %d is %0.4fms\n", j + 1, time_req);
+
+      printf("Time taken for round %d is %0.4fms for BruteForce and %0.4fms for DP\n", j + 1, time_req, time_reqDP);
       time_sum += time_req;
+      time_sumDP += time_reqDP;
       fprintf(fp, "\n");
     }
-    fprintf(fout, "%d,%0.4f\n", i, time_sum / TOTAL);
+    fprintf(fout, "%d,%0.4f,%0.4f\n", i, time_sum / TOTAL, time_sumDP / TOTAL);
   }
   fclose(fp);
   fclose(fout);
